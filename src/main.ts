@@ -1,6 +1,11 @@
-import doSomething from "./modules/kek";
+import fs from "fs";
+// import doSomething from "./modules/kek.js";
 
-const msg = "Hello World!";
-console.log(msg);
+// const fileContent = fs.readFileSync("./lmfao.txt");
+// console.log(fileContent);
 
-doSomething();
+// doSomething();
+
+// fs.writeFileSync("test.txt", "some text");
+
+console.log(1241251235);
