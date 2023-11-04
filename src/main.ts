@@ -8,6 +8,8 @@ console.log(fileContent);
 
 import puppeteer from "puppeteer";
 
+// Это старая модель, когда не было модульности CJS/ESM использовались async iife
+// Переписать надо
 (async () => {
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
