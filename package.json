@@ -9,13 +9,14 @@
   "license": "ISC",
   "scripts": {
     "dev": "ts-node --esm src/main.ts",
-    "test": "tsc && node dist/main.js"
+    "start": "tsc || node dist/main.js"
   },
   "devDependencies": {
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   },
   "dependencies": {
+    "express": "^4.18.2",
     "puppeteer": "^21.3.8"
   }
 }

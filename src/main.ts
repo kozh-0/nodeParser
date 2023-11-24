@@ -1,36 +1,26 @@
-import { readFileSync } from "fs";
-import doSomething from "./modules/kek.js";
+// import { readFileSync } from "fs";
+// import doSomething from "./modules/kek.js";
 
-const fileContent = readFileSync("./lmfao.txt", "utf-8");
+// const fileContent = readFileSync("./lmfao.txt", "utf-8");
 // fs.writeFileSync("test.txt", "some text");
-console.log(fileContent);
+// console.log(fileContent);
 // doSomething();
+import express from 'express';
+import { carsRouter } from './modules/cars.js';
 
-import puppeteer from "puppeteer";
+const PORT = 5555;
+const app = express();
 
-// Это старая модель, когда не было модульности CJS/ESM использовались async iife
-// Переписать надо
-(async () => {
-  const browser = await puppeteer.launch({ headless: true });
-  const page = await browser.newPage();
+// Чтобы принимать JSON параметры
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-  const avitoForesterManualDoLyama =
-    "https://www.avito.ru/all/avtomobili/subaru/forester/mehanika-ASgBAQICAkTgtg2mmSjitg3MpSgBQPC2DRTstyg?cd=1&f=ASgBAQECAkTgtg2mmSjitg3MpSgBQPC2DRTstygBRcaaDBx7ImZyb20iOjQwMDAwMCwidG8iOjEwMDAwMDB9";
-  await page.goto(avitoForesterManualDoLyama);
-  //   await page.setViewport({ width: 1080, height: 1024 });
-  //   await page.screenshot({ path: "img.png" });
+app.use('/cars', carsRouter);
 
-  let res = await page.evaluate(() => {
-    return Array.from(document.querySelectorAll("div[data-marker=item]"), (el, id) => ({
-      title: el.querySelector("h3").innerText,
-      price: el.querySelector("p").innerText,
-      //@ts-ignore
-      link: el.querySelector("a").attributes.href.baseUri,
-      id: id + 1,
-    })).sort((a, b) => (a.price > b.price ? 1 : -1));
-  });
-
-  console.log(res);
-
-  await browser.close();
-})();
+app.listen(PORT, () => {
+  console.log(`
+  ========================================================================================
+  Сервер запущен http://localhost:${PORT}
+  ========================================================================================
+  `);
+});
