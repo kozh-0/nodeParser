@@ -6,7 +6,8 @@
 // console.log(fileContent);
 // doSomething();
 import express from 'express';
-import { carsRouter } from './modules/cars';
+import cors from 'cors';
+import { carsRouter } from './cars';
 
 const PORT = 5555;
 const app = express();
@@ -14,13 +15,14 @@ const app = express();
 // Чтобы принимать JSON параметры
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors({ origin: ['http://localhost:3333'] }));
 
 app.use('/cars', carsRouter);
 
 app.listen(PORT, () => {
   console.log(`
-  ========================================================================================
+  ==============================================================================
   Сервер запущен http://localhost:${PORT}
-  ========================================================================================
+  ==============================================================================
   `);
 });
