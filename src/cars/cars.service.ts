@@ -1,11 +1,5 @@
+import { getCarListInterface } from 'helper';
 import puppeteer from 'puppeteer';
-
-interface getCarListInterface {
-  brand: string;
-  model: string;
-  transmission: 'mehanika' | 'avtomat';
-  sortByPrice: boolean;
-}
 
 export async function getCarDataFromAvito(reqBody: getCarListInterface) {
   const start = performance.now();
@@ -32,7 +26,7 @@ export async function getCarDataFromAvito(reqBody: getCarListInterface) {
       publishDate: el.querySelector('div[data-marker="item-date/tooltip/reference"]').innerText,
       link: el.querySelector('a').href,
       id: id + 1,
-    })),
+    })).slice(0, 5),
     status: 200,
     error: '',
   }));
