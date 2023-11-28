@@ -28,9 +28,9 @@ carsRouter.post('/getList', async (req, res) => {
   console.log('Обработка данных... ', performance.now() - start);
   let data = await page.evaluate(() => {
     const list = Array.from(document.querySelectorAll('div[data-marker=item]'), (el, id) => ({
-      title: el.querySelector('h3').innerText,
+      title: el.querySelector('h3').innerText, //@ts-ignore
       info: el.querySelector('p[data-marker=item-specific-params]').innerText,
-      price: el.querySelector('p').innerText,
+      price: el.querySelector('p').innerText, //@ts-ignore
       link: el.querySelector('a').attributes.href.baseUri,
       id: id + 1,
     }));

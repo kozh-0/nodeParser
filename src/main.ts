@@ -6,7 +6,7 @@
 // console.log(fileContent);
 // doSomething();
 import express from 'express';
-import { carsRouter } from './modules/cars.js';
+import { carsRouter } from './modules/cars';
 
 const PORT = 5555;
 const app = express();
