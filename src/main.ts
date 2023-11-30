@@ -29,4 +29,5 @@ app.get('/hello', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Сервер запущен http://localhost:${PORT}`);
   TG_BOT.launch();
+  console.log(`TG бот запущен`);
 });
