@@ -21,8 +21,9 @@ app.get('/hello', (req, res) => {
   res.send('Привет');
 });
 
-// обработка ошибок
+// обработка ошибок, не работает
 app.use((err, req, res, next) => {
+  res.setTimeout(3000, () => console.log('таймаут'));
   console.error(err);
   res.status(500).json({ msg: err.message ?? 'Севрер устал ¯\\_(ツ)_/¯' });
 });

@@ -7,7 +7,10 @@ export async function getCarDataFromAvito(reqBody: { input: string; sortByPrice?
   // сортировка по цене (s=104), радиус 100, вначале стоит город
   const avitoCarUrl = `https://www.avito.ru/ufa/avtomobili?q=${reqBody.input}&radius=100&searchRadius=100&s=104`;
   console.log(avitoCarUrl);
-  await page.goto(avitoCarUrl);
+  // ТУТ ОШИБКА!!!! Не может открыть страницу, waitUntill хз поможет ли
+  await page.goto(avitoCarUrl, { timeout: 30000, waitUntil: 'networkidle2' });
+  // ТУТ ОШИБКА!!!! ^^^^^^^^^^^^^^^^ Скорректировать с таймаутами апи и телеги там тоже по 30 сек
+  console.log('Открыл страницу, обрабатываю...');
 
   const data = await page.evaluate(() => {
     const list = Array.from(document.querySelectorAll('div[data-marker=item]'), (el, id) => {
@@ -24,7 +27,6 @@ export async function getCarDataFromAvito(reqBody: { input: string; sortByPrice?
 
     return { list, status: 200, error: '' };
   });
-  console.log('Ошибка закрытия браузера?');
 
   browser.close();
 
