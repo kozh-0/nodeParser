@@ -1,4 +1,4 @@
-import { Message, Update } from '@telegraf/types';
+import { Update } from '@telegraf/types';
 import { Context, NarrowedContext } from 'telegraf';
 
 export class Loader {

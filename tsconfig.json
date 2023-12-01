@@ -5,7 +5,9 @@
     "baseUrl": "src",
     "target": "ES2022",
     "outDir": "dist",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "noUnusedLocals": true,
+    "noEmitOnError": true
   },
   "include": ["src/**/*"]
 }

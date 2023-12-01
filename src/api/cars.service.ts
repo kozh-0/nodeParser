@@ -1,7 +1,6 @@
-import { getCarListInterface } from 'helper';
 import puppeteer from 'puppeteer';
 
-export async function getCarDataFromAvito(reqBody: getCarListInterface) {
+export async function getCarDataFromAvito(reqBody: { input: string; sortByPrice?: boolean }) {
   const browser = await puppeteer.launch({ headless: 'new' });
   const page = await browser.newPage();
 
@@ -31,7 +30,6 @@ export async function getCarDataFromAvito(reqBody: getCarListInterface) {
 
   if (!data.list.length) {
     console.log('404 Ошибка?');
-
     return { ...data, error: 'Не удалось ничего найти...', status: 404 };
   }
 

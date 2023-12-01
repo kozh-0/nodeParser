@@ -1,9 +1,8 @@
-import axios from 'axios';
 import dedent from 'dedent';
 import { Loader } from '../loader';
 import { Telegraf } from 'telegraf';
 import { message } from 'telegraf/filters';
-import { getCarDataFromAvito } from '../cars/cars.service';
+import { getCarDataFromAvito } from '../api/cars.service';
 
 function LOG(msg) {
   console.log(dedent`========================================================================================
@@ -29,7 +28,6 @@ TG_BOT.on(message('text'), async (ctx) => {
   LOG(ctx.message);
 
   try {
-    // @ts-ignore
     const kek = await getCarDataFromAvito({ input });
     console.log('Успех \n');
 
@@ -44,7 +42,8 @@ TG_BOT.on(message('text'), async (ctx) => {
         ${el.price} — ${el.publishDate}
         ${el.link}`);
     });
-  } catch (error) {
+  } catch (err) {
+    console.error('TRY_CATCH AREA===========================================', err);
     // Пока сюда не попадал, возможно try catch не нужен
     ctx.reply(`Что-то пошло cооовсем не так...`);
   }
