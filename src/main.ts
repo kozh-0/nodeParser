@@ -4,7 +4,7 @@ import cors from 'cors';
 import { carsRouter, postgresRouter } from './api';
 import { TG_BOT } from './telega';
 
-const PORT = 5555;
+const PORT = process.env.PORT || 8080;
 const app = express();
 
 // Чтобы принимать JSON параметры в res.body

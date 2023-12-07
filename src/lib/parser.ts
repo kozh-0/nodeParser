@@ -1,5 +1,6 @@
 import puppeteer from 'puppeteer';
 
+// Данная функция используется ТГ ботом и Апи напрямую
 export async function getCarDataFromAvito(reqBody: { input: string; sortByPrice?: boolean }) {
   const browser = await puppeteer.launch({ headless: 'new' });
   const page = await browser.newPage();

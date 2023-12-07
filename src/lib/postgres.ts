@@ -1,5 +1,6 @@
 import Sequelize, { Sequelize as ORM_INIT } from 'sequelize';
 
+// Используется для записи
 export const db = new ORM_INIT(process.env.PG_NAME, process.env.PG_USER, process.env.PG_PASSWORD, {
   host: process.env.PG_HOST,
   dialect: 'postgres',

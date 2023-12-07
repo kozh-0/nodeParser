@@ -1,8 +1,8 @@
 import dedent from 'dedent';
-import { Loader } from '../loader';
+import { Loader } from './loader';
 import { Telegraf } from 'telegraf';
 import { message } from 'telegraf/filters';
-import { getCarDataFromAvito } from '../api/cars.service';
+import { getCarDataFromAvito } from '../lib/parser';
 
 function LOG(msg) {
   console.log(dedent`========================================================================================
@@ -45,8 +45,15 @@ TG_BOT.on(message('text'), async (ctx) => {
   } catch (err) {
     console.error('TRY_CATCH AREA===========================================', err);
     // Пока сюда не попадал, возможно try catch не нужен
+    console.error(err);
+
     ctx.reply(`Что-то пошло cооовсем не так...`);
   }
+});
+
+TG_BOT.catch((err, ctx) => {
+  console.error(err);
+  ctx.reply('Ошибка тг! Попробуй еще раз...');
 });
 
 export { TG_BOT };
