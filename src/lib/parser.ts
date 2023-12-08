@@ -17,9 +17,9 @@ export async function getCarDataFromAvito(reqBody: { input: string; sortByPrice?
     const list = Array.from(document.querySelectorAll('div[data-marker=item]'), (el, id) => {
       if (id > 5) return null;
       return {
-        title: el.querySelector('h3').innerText, //@ts-ignore
+        title: el.querySelector('h3').innerText, // @ts-ignore
         info: el.querySelector('p[data-marker=item-specific-params]').innerText,
-        price: el.querySelector('p').innerText, //@ts-ignore
+        price: el.querySelector('p').innerText, // @ts-ignore
         publishDate: el.querySelector('div[data-marker="item-date/tooltip/reference"]').innerText,
         link: el.querySelector('a').href,
         id: id + 1,

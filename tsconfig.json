@@ -1,13 +1,20 @@
 {
   "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ESNext", "DOM"],
     "module": "NodeNext",
     // "moduleResolution": "node",
-    "baseUrl": "src",
-    "target": "ES2022",
-    "outDir": "dist",
+    "rootDir": "./src",
+    "outDir": "./dist",
     "esModuleInterop": true,
+    // "strict": true,
+    // "noImplicitAny": true,
     "noUnusedLocals": true,
-    "noEmitOnError": true
+    "noEmitOnError": true,
+    "removeComments": true
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"],
+  "lib": ["esnext"]
+  // "ts-node": { "esm": true }
 }

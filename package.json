@@ -1,14 +1,14 @@
 {
   "name": "parser",
   "version": "1.0.0",
-  "author": "kozh",
-  "description": "",
+  "author": "Dmitry Kozhevnikov",
+  "description": "Avito cars parser (api + tg bot)",
   "main": "./src/main.ts",
   "keywords": [],
   "license": "ISC",
   "scripts": {
     "dev": "nodemon",
-    "pm2": "tsc || pm2 stop main || pm2 start dist/main.js"
+    "pm2": "rm -rf dist || tsc || pm2 stop main || pm2 start dist/main.js"
   },
   "dependencies": {
     "axios": "^1.6.2",
